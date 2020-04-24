@@ -1,7 +1,3 @@
 *.o
 *.exe
-*.svg
-output*.xml
-output*.mat
-initial*
-final*
+.DS_Store
