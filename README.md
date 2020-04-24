@@ -13,6 +13,23 @@ We found that:
 * * * 
 
 ## Release summary: 
+
+### 0.2.0:
+* Clean up the core source code
+* Closed off the random seeding function in `custom_modules/liver_functions.cpp`
+* Add matlab source code of liver generator
+
+Bugs fixed:
+* Fix bugs in `custom_modules/liver_functions.cpp`
+
+  ```c++
+  void HCT116_phenotype_update_function( Cell* pCell , Phenotype& phenotype, double dt )
+  {
+      static int start_phase_index = Ki67_advanced.find_phase_index( PhysiCell_constants::Ki67_negative ); // 0
+      static int end_phase_index = Ki67_advanced.find_phase_index( PhysiCell_constants::Ki67_positive_premitotic ); // 1
+  }
+  ```
+
 ### 0.1.0:
 This is initial release. In this version, we explore the random metastasis of tumor within liver tissue. Tumor cells are
 stochastically seeded through the tissue, using a constant of probability of seeding per voxel. 
