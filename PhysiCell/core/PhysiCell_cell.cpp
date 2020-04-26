@@ -1,65 +1,68 @@
 /*
-#############################################################################
-# If you use PhysiCell in your project, please cite PhysiCell and the ver-  #
-# sion number, such as below:                                               #
-#                                                                           #
-# We implemented and solved the model using PhysiCell (Version 1.2.1) [1].  #
-#                                                                           #
-# [1] A Ghaffarizadeh, SH Friedman, SM Mumenthaler, and P Macklin,          #
-#     PhysiCell: an Open Source Physics-Based Cell Simulator for            #
-#     Multicellular Systems, PLoS Comput. Biol. 2017 (in revision).         #
-#     preprint DOI: 10.1101/088773                                          #
-#                                                                           #
-# Because PhysiCell extensively uses BioFVM, we suggest you also cite       #
-#     BioFVM as below:                                                      #
-#                                                                           #
-# We implemented and solved the model using PhysiCell (Version 1.2.1) [1],  #
-# with BioFVM [2] to solve the transport equations.                         #
-#                                                                           #
-# [1] A Ghaffarizadeh, SH Friedman, SM Mumenthaler, and P Macklin,          #
-#     PhysiCell: an Open Source Physics-Based Cell Simulator for            #
-#     Multicellular Systems, PLoS Comput. Biol. 2017 (in revision).         #
-#     preprint DOI: 10.1101/088773                                          #
-#                                                                           #
-# [2] A Ghaffarizadeh, SH Friedman, and P Macklin, BioFVM: an efficient     #
-#    parallelized diffusive transport solver for 3-D biological simulations,#
-#    Bioinformatics 32(8): 1256-8, 2016. DOI: 10.1093/bioinformatics/btv730 #
-#                                                                           #
-#############################################################################
-#                                                                           #
-# BSD 3-Clause License (see https://opensource.org/licenses/BSD-3-Clause)   #
-#                                                                           #
-# Copyright (c) 2015-2017, Paul Macklin and the PhysiCell Project           #
-# All rights reserved.                                                      #
-#                                                                           #
-# Redistribution and use in source and binary forms, with or without        #
-# modification, are permitted provided that the following conditions are    #
-# met:                                                                      #
-#                                                                           #
-# 1. Redistributions of source code must retain the above copyright notice, #
-# this list of conditions and the following disclaimer.                     #
-#                                                                           #
-# 2. Redistributions in binary form must reproduce the above copyright      #
-# notice, this list of conditions and the following disclaimer in the       #
-# documentation and/or other materials provided with the distribution.      #
-#                                                                           #
-# 3. Neither the name of the copyright holder nor the names of its          #
-# contributors may be used to endorse or promote products derived from this #
-# software without specific prior written permission.                       #
-#                                                                           #
-# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS       #
-# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED #
-# TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A           #
-# PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER #
-# OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,  #
-# EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,       #
-# PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR        #
-# PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF    #
-# LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING      #
-# NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS        #
-# SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.              #
-#                                                                           #
-#############################################################################
+###############################################################################
+# If you use PhysiCell in your project, please cite PhysiCell and the version #
+# number, such as below:                                                      #
+#                                                                             #
+# We implemented and solved the model using PhysiCell (Version x.y.z) [1].    #
+#                                                                             #
+# [1] A Ghaffarizadeh, R Heiland, SH Friedman, SM Mumenthaler, and P Macklin, #
+#     PhysiCell: an Open Source Physics-Based Cell Simulator for Multicellu-  #
+#     lar Systems, PLoS Comput. Biol. 14(2): e1005991, 2018                   #
+#     DOI: 10.1371/journal.pcbi.1005991                                       #
+#                                                                             #
+# See VERSION.txt or call get_PhysiCell_version() to get the current version  #
+#     x.y.z. Call display_citations() to get detailed information on all cite-#
+#     able software used in your PhysiCell application.                       #
+#                                                                             #
+# Because PhysiCell extensively uses BioFVM, we suggest you also cite BioFVM  #
+#     as below:                                                               #
+#                                                                             #
+# We implemented and solved the model using PhysiCell (Version x.y.z) [1],    #
+# with BioFVM [2] to solve the transport equations.                           #
+#                                                                             #
+# [1] A Ghaffarizadeh, R Heiland, SH Friedman, SM Mumenthaler, and P Macklin, #
+#     PhysiCell: an Open Source Physics-Based Cell Simulator for Multicellu-  #
+#     lar Systems, PLoS Comput. Biol. 14(2): e1005991, 2018                   #
+#     DOI: 10.1371/journal.pcbi.1005991                                       #
+#                                                                             #
+# [2] A Ghaffarizadeh, SH Friedman, and P Macklin, BioFVM: an efficient para- #
+#     llelized diffusive transport solver for 3-D biological simulations,     #
+#     Bioinformatics 32(8): 1256-8, 2016. DOI: 10.1093/bioinformatics/btv730  #
+#                                                                             #
+###############################################################################
+#                                                                             #
+# BSD 3-Clause License (see https://opensource.org/licenses/BSD-3-Clause)     #
+#                                                                             #
+# Copyright (c) 2015-2018, Paul Macklin and the PhysiCell Project             #
+# All rights reserved.                                                        #
+#                                                                             #
+# Redistribution and use in source and binary forms, with or without          #
+# modification, are permitted provided that the following conditions are met: #
+#                                                                             #
+# 1. Redistributions of source code must retain the above copyright notice,   #
+# this list of conditions and the following disclaimer.                       #
+#                                                                             #
+# 2. Redistributions in binary form must reproduce the above copyright        #
+# notice, this list of conditions and the following disclaimer in the         #
+# documentation and/or other materials provided with the distribution.        #
+#                                                                             #
+# 3. Neither the name of the copyright holder nor the names of its            #
+# contributors may be used to endorse or promote products derived from this   #
+# software without specific prior written permission.                         #
+#                                                                             #
+# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" #
+# AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE   #
+# IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE  #
+# ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE   #
+# LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR         #
+# CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF        #
+# SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS    #
+# INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN     #
+# CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)     #
+# ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE  #
+# POSSIBILITY OF SUCH DAMAGE.                                                 #
+#                                                                             #
+###############################################################################
 */
 
 #include "PhysiCell_cell.h"
@@ -81,7 +84,7 @@ Cell_Parameters::Cell_Parameters()
 	o2_necrosis_max = 2.5; 
 	
 	o2_proliferation_threshold = 5.0; // assume no proliferation at same level as starting necrosis 
-	o2_proliferation_saturation = 38.0; // 5% = 38, 21% = 160 mmHg 
+	o2_proliferation_saturation = 160.0; // 5% = 38, 21% = 160 mmHg 
 	o2_reference = 160.0; // assume all was measured in normoxic 21% o2 
 	
 	pReference_live_phenotype = NULL; // reference live (usually physioxic) phenotype 
@@ -128,6 +131,51 @@ Cell_Definition::Cell_Definition()
 	return; 
 }
 
+Cell_Definition::Cell_Definition( Cell_Definition& cd )
+{
+	// set the microenvironment pointer 
+	pMicroenvironment = cd.pMicroenvironment;
+
+	// set up the default parameters 
+		// the default Cell_Parameters constructor should take care of this
+		
+	type = cd.type; 
+	name = cd.name; 
+	 
+	parameters = cd.parameters;
+	custom_data = cd.custom_data; 
+	functions = cd.functions; 
+	phenotype = cd.phenotype; 
+	
+	// this is the whole reason we need ot make a copy constructor 
+	parameters.pReference_live_phenotype = &phenotype; 
+	
+	return; 
+}
+
+Cell_Definition& Cell_Definition::operator=( const Cell_Definition& cd )
+{
+	// set the microenvironment pointer 
+	pMicroenvironment = cd.pMicroenvironment;
+
+	// set up the default parameters 
+		// the default Cell_Parameters constructor should take care of this
+		
+	type = cd.type; 
+	name = cd.name; 
+	 
+	parameters = cd.parameters;
+	custom_data = cd.custom_data; 
+	functions = cd.functions; 
+	phenotype = cd.phenotype; 
+	
+	// this is the whole reason we need ot make a copy constructor 
+	parameters.pReference_live_phenotype = &phenotype; 
+	
+	return *this; 
+}
+
+
 Cell_Definition cell_defaults; 
 
 Cell_State::Cell_State()
@@ -148,11 +196,11 @@ void Cell::update_motility_vector( double dt_ )
 		return; 
 	}
 	
-	if( uniform_random() < dt_ / phenotype.motility.persistence_time || phenotype.motility.persistence_time < dt_ )
+	if( UniformRandom() < dt_ / phenotype.motility.persistence_time || phenotype.motility.persistence_time < dt_ )
 	{
 		// choose a uniformly random unit vector 
-		double temp_angle = 6.28318530717959*uniform_random();
-		double temp_phi = 3.1415926535897932384626433832795*uniform_random();
+		double temp_angle = 6.28318530717959*UniformRandom();
+		double temp_phi = 3.1415926535897932384626433832795*UniformRandom();
 		
 		double sin_phi = sin(temp_phi);
 		double cos_phi = cos(temp_phi);
@@ -262,9 +310,13 @@ Cell::Cell()
 	
 	phenotype = cell_defaults.phenotype; 
 	
+	phenotype.molecular.sync_to_cell( this ); 
+	
 	// cell state should be fine by the default constructor 
 	
 	current_mechanics_voxel_index=-1;
+	
+	updated_current_mechanics_voxel_index = 0;
 	
 	is_movable = true;
 	is_out_of_domain = false;
@@ -272,6 +324,7 @@ Cell::Cell()
 	
 	assign_orientation();
 	container = NULL;
+	
 	
 	return; 
 }
@@ -343,6 +396,11 @@ Cell* Cell::divide( )
 	child->copy_data( this );	
 	child->copy_function_pointers(this);
 	child->parameters = parameters;
+	
+	// evenly divide internalized substrates 
+	// if these are not actively tracked, they are zero anyway 
+	*internalized_substrates *= 0.5; 
+	*(child->internalized_substrates) = *internalized_substrates ; 
 	
 	// The following is already performed by create_cell(). JULY 2017 ***
 	// child->register_microenvironment( get_microenvironment() );
@@ -754,14 +812,33 @@ Cell* create_cell( Cell_Definition& cd )
 	return pNew; 
 }
 
-
-
-
-
-
+void Cell::convert_to_cell_definition( Cell_Definition& cd )
+{
+	
+	// use the cell defaults; 
+	type = cd.type; 
+	type_name = cd.name; 
+	
+	custom_data = cd.custom_data; 
+	parameters = cd.parameters; 
+	functions = cd.functions; 
+	
+	phenotype = cd.phenotype; 
+	// is_movable = true;
+	// is_out_of_domain = false;
+	
+	// displacement.resize(3,0.0); // state? 
+	
+	assign_orientation();	
+	
+	return; 
+}
 
 void delete_cell( int index )
 {
+	// released internalized substrates (as of 1.5.x releases)
+	(*all_cells)[index]->release_internalized_substrates(); 
+	
 	// deregister agent in from the agent container
 	(*all_cells)[index]->get_container()->remove_agent((*all_cells)[index]);
 	// de-allocate (delete) the cell; 
@@ -847,4 +924,105 @@ std::vector<Cell*>& Cell::cells_in_my_container( void )
 	return get_container()->agent_grid[get_current_mechanics_voxel_index()];
 }
 
+void Cell::ingest_cell( Cell* pCell_to_eat )
+{
+	// absorb all the volume(s)
+
+	// absorb fluid volume (all into the cytoplasm) 
+	phenotype.volume.cytoplasmic_fluid += pCell_to_eat->phenotype.volume.fluid; 
+	pCell_to_eat->phenotype.volume.cytoplasmic_fluid = 0.0; 
+	
+	// absorb nuclear and cyto solid volume (into the cytoplasm) 
+	phenotype.volume.cytoplasmic_solid += pCell_to_eat->phenotype.volume.cytoplasmic_solid; 
+	pCell_to_eat->phenotype.volume.cytoplasmic_solid = 0.0; 
+	
+	phenotype.volume.cytoplasmic_solid += pCell_to_eat->phenotype.volume.nuclear_solid; 
+	pCell_to_eat->phenotype.volume.nuclear_solid = 0.0; 
+	
+	// consistency calculations 
+	
+	phenotype.volume.fluid = phenotype.volume.nuclear_fluid + 
+		phenotype.volume.cytoplasmic_fluid; 
+	pCell_to_eat->phenotype.volume.fluid = 0.0; 
+	
+	phenotype.volume.solid = phenotype.volume.cytoplasmic_solid + 
+		phenotype.volume.nuclear_solid; 
+	pCell_to_eat->phenotype.volume.solid = 0.0; 
+	
+	// no change to nuclear volume (initially) 
+	pCell_to_eat->phenotype.volume.nuclear = 0.0; 
+	pCell_to_eat->phenotype.volume.nuclear_fluid = 0.0; 
+	
+	phenotype.volume.cytoplasmic = phenotype.volume.cytoplasmic_solid + 
+		phenotype.volume.cytoplasmic_fluid; 
+	pCell_to_eat->phenotype.volume.cytoplasmic = 0.0; 
+	
+	phenotype.volume.total = phenotype.volume.nuclear + 
+		phenotype.volume.cytoplasmic; 
+	pCell_to_eat->phenotype.volume.total = 0.0; 
+
+	phenotype.volume.fluid_fraction = phenotype.volume.fluid / 
+		(  phenotype.volume.total ); 
+	pCell_to_eat->phenotype.volume.fluid_fraction = 0.0; 
+
+	phenotype.volume.cytoplasmic_to_nuclear_ratio = phenotype.volume.cytoplasmic_solid / 
+		( phenotype.volume.nuclear_solid + 1e-16 );
+		
+	// update corresponding BioFVM parameters (self-consistency) 
+	set_total_volume( phenotype.volume.total ); 
+	pCell_to_eat->set_total_volume( 0.0 ); 
+	
+	// absorb the internalized substrates 
+	
+	// multiply by the fraction that is supposed to be ingested (for each substrate) 
+	*(pCell_to_eat->internalized_substrates) *= 
+		*(pCell_to_eat->fraction_transferred_when_ingested); // 
+	
+	*internalized_substrates += *(pCell_to_eat->internalized_substrates); 
+	static int n_substrates = internalized_substrates->size(); 
+	pCell_to_eat->internalized_substrates->assign( n_substrates , 0.0 ); 	
+	
+	// trigger removal from the simulation 
+	// pCell_to_eat->die(); // I don't think this is safe if it's in an OpenMP loop 
+	// flag it for removal 
+	pCell_to_eat->flag_for_removal(); 
+	// mark it as dead 
+	pCell_to_eat->phenotype.death.dead = true; 
+	// set secretion and uptake to zero 
+	pCell_to_eat->phenotype.secretion.set_all_secretion_to_zero( );  
+	pCell_to_eat->phenotype.secretion.set_all_uptake_to_zero( ); 
+
+	
+	// deactivate all custom function 
+	pCell_to_eat->functions.custom_cell_rule = NULL; 
+	pCell_to_eat->functions.update_phenotype = NULL; 
+	pCell_to_eat->functions.contact_function = NULL; 
+	
+	// set it to zero mechanics 
+	pCell_to_eat->functions.custom_cell_rule = NULL; 
+	
+	return; 
+}
+
+void Cell::lyse_cell( void )
+{
+	flag_for_removal(); 
+	// mark it as dead 
+	phenotype.death.dead = true; 
+	// set secretion and uptake to zero 
+	phenotype.secretion.set_all_secretion_to_zero( );  
+	phenotype.secretion.set_all_uptake_to_zero( ); 
+	
+	// deactivate all custom function 
+	functions.custom_cell_rule = NULL; 
+	functions.update_phenotype = NULL; 
+	functions.contact_function = NULL; 
+	
+	// set it to zero mechanics 
+	functions.custom_cell_rule = NULL; 
+
+	return; 
+}
+
 };
+

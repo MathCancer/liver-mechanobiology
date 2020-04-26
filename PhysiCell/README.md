@@ -1,1 +1,1 @@
-# liver project clean source code for run simulation on BigRed2 (same as paper)
+### Update the code code to PhysiCell 1.6.0, and update the resizable domain

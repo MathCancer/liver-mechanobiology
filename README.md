@@ -15,7 +15,38 @@ We found that:
 
 ## Release summary: 
 
-### 0.2.0:
+### 1.1.0:
+* Update to PhysiCell 1.6.0
+* Update the resizable domain, which means the domain size can be dynamic, changing within `[-5000 5000] * [-5000 5000] micron`
+* Parse parameters from `config/PhysiCell_settings.xml`, such as domain size, simulation time and custom parameters etc. For example:
+  
+  ```xml
+	<domain>
+		<x_min>-1000</x_min>
+		<x_max>1000</x_max>
+		<y_min>-1000</y_min>
+		<y_max>1000</y_max>
+	</domain>
+
+	<overall>
+		<max_time units="min">86400</max_time> <!-- 60 days * 24 h * 60 min -->
+	</overall>
+
+	<user_parameters>
+	  <random_seed type="int" units="dimensionless" hidden="true">0</random_seed> 
+    <tumor_transition_rate type="double" units="1/min" description="The proliferation rate of tumor    cells">0.0022956841138659324</tumor_transition_rate>
+    <tumor_max_necrosis_rate type="double" units="1/min" description="The maximum necrosis rate of tumor cells">0.002777777777777778</tumor_max_necrosis_rate>
+    <elastic_rate type="double" units="1/min" description="The elastic force rate for parenchyma">0.05 </elastic_rate>
+    <plastic_rate type="double" units="1/min" description="The plastic reorganization force rate for parenchyma">0.0005</plastic_rate>
+    <max_ECM_displacement type="double" units="micron" description="The maximum tolerated displacement for parenchyma">0.75</max_ECM_displacement> 
+    <tumor_max_pressue type="double" units="dimensionless" description="The maximum pressure threshold for tumor cells proliferation">1.0</tumor_max_pressue>
+    <if_random_seed type="bool" units="none" description="Boolean variable that used to enable or disable random seeding">false</if_random_seed>
+	</user_parameters>
+
+  ```
+
+
+### 1.0.0:
 * Clean up the core source code
 * Closed off the random seeding function in `custom_modules/liver_functions.cpp`
 * Add matlab source code of liver generator
