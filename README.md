@@ -15,7 +15,7 @@ We found that:
 
 ## Release summary: 
 
-### 0.2.0:
+### 1.0.0:
 * Clean up the core source code
 * Closed off the random seeding function in `custom_modules/liver_functions.cpp`
 * Add matlab source code of liver generator
