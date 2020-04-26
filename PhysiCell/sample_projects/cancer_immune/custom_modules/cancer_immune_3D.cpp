@@ -1,3 +1,70 @@
+/*
+###############################################################################
+# If you use PhysiCell in your project, please cite PhysiCell and the version #
+# number, such as below:                                                      #
+#                                                                             #
+# We implemented and solved the model using PhysiCell (Version x.y.z) [1].    #
+#                                                                             #
+# [1] A Ghaffarizadeh, R Heiland, SH Friedman, SM Mumenthaler, and P Macklin, #
+#     PhysiCell: an Open Source Physics-Based Cell Simulator for Multicellu-  #
+#     lar Systems, PLoS Comput. Biol. 14(2): e1005991, 2018                   #
+#     DOI: 10.1371/journal.pcbi.1005991                                       #
+#                                                                             #
+# See VERSION.txt or call get_PhysiCell_version() to get the current version  #
+#     x.y.z. Call display_citations() to get detailed information on all cite-#
+#     able software used in your PhysiCell application.                       #
+#                                                                             #
+# Because PhysiCell extensively uses BioFVM, we suggest you also cite BioFVM  #
+#     as below:                                                               #
+#                                                                             #
+# We implemented and solved the model using PhysiCell (Version x.y.z) [1],    #
+# with BioFVM [2] to solve the transport equations.                           #
+#                                                                             #
+# [1] A Ghaffarizadeh, R Heiland, SH Friedman, SM Mumenthaler, and P Macklin, #
+#     PhysiCell: an Open Source Physics-Based Cell Simulator for Multicellu-  #
+#     lar Systems, PLoS Comput. Biol. 14(2): e1005991, 2018                   #
+#     DOI: 10.1371/journal.pcbi.1005991                                       #
+#                                                                             #
+# [2] A Ghaffarizadeh, SH Friedman, and P Macklin, BioFVM: an efficient para- #
+#     llelized diffusive transport solver for 3-D biological simulations,     #
+#     Bioinformatics 32(8): 1256-8, 2016. DOI: 10.1093/bioinformatics/btv730  #
+#                                                                             #
+###############################################################################
+#                                                                             #
+# BSD 3-Clause License (see https://opensource.org/licenses/BSD-3-Clause)     #
+#                                                                             #
+# Copyright (c) 2015-2018, Paul Macklin and the PhysiCell Project             #
+# All rights reserved.                                                        #
+#                                                                             #
+# Redistribution and use in source and binary forms, with or without          #
+# modification, are permitted provided that the following conditions are met: #
+#                                                                             #
+# 1. Redistributions of source code must retain the above copyright notice,   #
+# this list of conditions and the following disclaimer.                       #
+#                                                                             #
+# 2. Redistributions in binary form must reproduce the above copyright        #
+# notice, this list of conditions and the following disclaimer in the         #
+# documentation and/or other materials provided with the distribution.        #
+#                                                                             #
+# 3. Neither the name of the copyright holder nor the names of its            #
+# contributors may be used to endorse or promote products derived from this   #
+# software without specific prior written permission.                         #
+#                                                                             #
+# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" #
+# AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE   #
+# IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE  #
+# ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE   #
+# LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR         #
+# CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF        #
+# SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS    #
+# INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN     #
+# CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)     #
+# ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE  #
+# POSSIBILITY OF SUCH DAMAGE.                                                 #
+#                                                                             #
+###############################################################################
+*/
+
 #include "./cancer_immune_3D.h"
 
 Cell_Definition immune_cell; 
@@ -18,22 +85,32 @@ void create_immune_cell_type( void )
 	
 	int apoptosis_index = cell_defaults.phenotype.death.find_death_model_index( PhysiCell_constants::apoptosis_death_model ); 
 	
+	static int oxygen_ID = microenvironment.find_density_index( "oxygen" ); // 0 
+	static int immuno_ID = microenvironment.find_density_index( "immunostimulatory factor" ); // 1
+	
 	// reduce o2 uptake 
 	
-	immune_cell.phenotype.secretion.uptake_rates[0] *= 0.1; 
+	immune_cell.phenotype.secretion.uptake_rates[oxygen_ID] *= 
+		parameters.doubles("immune_o2_relative_uptake"); // 0.1; 
 	
 	// set apoptosis to survive 10 days (on average) 
 	
-	immune_cell.phenotype.death.rates[apoptosis_index] = 1.0 / (10.0 * 24.0 * 60.0 ); 
+	immune_cell.phenotype.death.rates[apoptosis_index] = 
+		parameters.doubles("immune_apoptosis_rate"); // 1.0 / (10.0 * 24.0 * 60.0 ); 
 	
 	// turn on motility; 
 	immune_cell.phenotype.motility.is_motile = true; 
-	immune_cell.phenotype.motility.persistence_time = 10.0; 
-	immune_cell.phenotype.motility.migration_speed = 1;  
-	immune_cell.phenotype.motility.migration_bias = 0.5;
+	immune_cell.phenotype.motility.persistence_time = 
+		parameters.doubles("immune_motility_persistence_time"); // 10.0; 
+	immune_cell.phenotype.motility.migration_speed = 
+		parameters.doubles("immune_migration_speed"); // 1;  
+	immune_cell.phenotype.motility.migration_bias = 
+		parameters.doubles("immune_migration_bias"); // 0.5;
 	
-	immune_cell.phenotype.mechanics.cell_cell_adhesion_strength *= 0.0;
-	immune_cell.phenotype.mechanics.cell_cell_repulsion_strength *= 5.0;
+	immune_cell.phenotype.mechanics.cell_cell_adhesion_strength *= 
+		parameters.doubles("immune_relative_adhesion"); // 0.0;
+	immune_cell.phenotype.mechanics.cell_cell_repulsion_strength *= 
+		parameters.doubles("immune_relative_repulsion"); // 5.0;
 	
 	// set functions 
 	
@@ -43,10 +120,15 @@ void create_immune_cell_type( void )
 	
 	// set custom data values 
 	
+	Parameter<double> paramD; 
+	
 	immune_cell.custom_data[ "oncoprotein" ] = 0.0; 
-	immune_cell.custom_data[ "kill rate" ] = 1.0/15.0; // how often it tries to kill
-	immune_cell.custom_data[ "attachment lifetime" ] = 60.00; // how long it can stay attached 
-	immune_cell.custom_data[ "attachment rate" ] = 1.0/5.0; // how long it wants to wander before attaching	
+	immune_cell.custom_data[ "kill rate" ] = 
+		parameters.doubles("immune_kill_rate"); // 1.0/15.0; // how often it tries to kill
+	immune_cell.custom_data[ "attachment lifetime" ] = 
+		parameters.doubles("immune_attachment_lifetime"); // 60.00; // how long it can stay attached 
+	immune_cell.custom_data[ "attachment rate" ] = 
+		parameters.doubles("immune_attachment_rate"); // 1.0/5.0; // how long it wants to wander before attaching	
 	
 	return; 
 }
@@ -57,7 +139,7 @@ void create_cell_types( void )
 	// same initial histogram of oncoprotein, even if threading means 
 	// that future division and other events are still not identical 
 	// for all runs 
-	SeedRandom(0); 
+	SeedRandom( parameters.ints("random_seed") ); 
 	
 	// housekeeping 
 	
@@ -88,14 +170,17 @@ void create_cell_types( void )
 	cell_defaults.parameters.o2_proliferation_saturation = 38.0;  
 	cell_defaults.parameters.o2_reference = 38.0; 
 	
+	static int oxygen_ID = microenvironment.find_density_index( "oxygen" ); // 0 
+	static int immuno_ID = microenvironment.find_density_index( "immunostimulatory factor" ); // 1
+	
 	// set default uptake and secretion 
 	// oxygen 
-	cell_defaults.phenotype.secretion.secretion_rates[0] = 0; 
-	cell_defaults.phenotype.secretion.uptake_rates[0] = 10; 
-	cell_defaults.phenotype.secretion.saturation_densities[0] = 38; 
+	cell_defaults.phenotype.secretion.secretion_rates[oxygen_ID] = 0; 
+	cell_defaults.phenotype.secretion.uptake_rates[oxygen_ID] = 10; 
+	cell_defaults.phenotype.secretion.saturation_densities[oxygen_ID] = 38; 
 
 	// immunostimulatory 
-	cell_defaults.phenotype.secretion.saturation_densities[1] = 1; 
+	cell_defaults.phenotype.secretion.saturation_densities[immuno_ID] = 1; 
 
 	// set the default cell type to o2-based proliferation with the effect of the 
 	// on oncoprotein, and secretion of the immunostimulatory factor 
@@ -110,8 +195,12 @@ void create_cell_types( void )
 	
 	// add custom data 
 	
+	Parameter<double> paramD;
+	
 	cell_defaults.custom_data.add_variable( "oncoprotein" , "dimensionless", 1.0 ); 
-	cell_defaults.custom_data.add_variable( "elastic coefficient" , "1/min" , 0.01 ); 
+	paramD = parameters.doubles[ "elastic_coefficient" ]; 
+	cell_defaults.custom_data.add_variable( "elastic coefficient" , paramD.units, paramD.value ); 
+		// "1/min" , 0.01 );  /* param */ 
 	cell_defaults.custom_data.add_variable( "kill rate" , "1/min" , 0 ); // how often it tries to kill
 	cell_defaults.custom_data.add_variable( "attachment lifetime" , "min" , 0 ); // how long it can stay attached 
 	cell_defaults.custom_data.add_variable( "attachment rate" , "1/min" ,0 ); // how long it wants to wander before attaching
@@ -130,17 +219,29 @@ void setup_microenvironment( void )
 	default_microenvironment_options.Y_range = {-1000, 1000}; 
 	default_microenvironment_options.Z_range = {-1000, 1000}; 
 */	
+/*
+	// now in XML 
 	default_microenvironment_options.X_range = {-750, 750}; 
 	default_microenvironment_options.Y_range = {-750, 750}; 
-	default_microenvironment_options.Z_range = {-750, 750}; 
+	default_microenvironment_options.Z_range = {-750, 750};
+*/
 	
-	default_microenvironment_options.simulate_2D = false; 
+	if( default_microenvironment_options.simulate_2D == true )
+	{
+		std::cout << "Warning: overriding 2D setting to return to 3D" << std::endl; 
+		default_microenvironment_options.simulate_2D = false; 
+	}
+	
+/* 
+	In XML as of version 1.6.0 
 	
 	// gradients are needed for this example 
 	
 	default_microenvironment_options.calculate_gradients = true; 
 	
 	// add the immunostimulatory factor 
+	
+	// let's do these in XML later 
 	
 	microenvironment.add_density( "immunostimulatory factor", "dimensionless" ); 
 	microenvironment.diffusion_coefficients[1] = 1e3; 
@@ -156,7 +257,11 @@ void setup_microenvironment( void )
 	default_microenvironment_options.Dirichlet_condition_vector[0] = 38; // physioxic conditions 
 	default_microenvironment_options.Dirichlet_condition_vector[1] = 0; 
 	default_microenvironment_options.Dirichlet_activation_vector[1] = false;  // no Dirichlet for the immunostimulatory factor 
-			
+
+	// set initial conditions 
+	default_microenvironment_options.initial_condition_vector = { 38.0 , 0 }; 
+*/
+	
 	initialize_microenvironment(); 	
 
 	return; 
@@ -186,9 +291,12 @@ void introduce_immune_cells( void )
 	
 	// now seed immune cells 
 	
-	int number_of_immune_cells = 7500; // 100; // 40; 
-	double radius_inner = tumor_radius + 30.0; // 75 // 50; 
-	double radius_outer = radius_inner + 75.0; // 100; // 1000 - 50.0; 
+	int number_of_immune_cells = 
+		parameters.ints("number_of_immune_cells"); // 7500; // 100; // 40; 
+	double radius_inner = tumor_radius + 
+		parameters.doubles("initial_min_immune_distance_from_tumor"); 30.0; // 75 // 50; 
+	double radius_outer = radius_inner + 
+		parameters.doubles("thickness_of_immune_seeding_region"); // 75.0; // 100; // 1000 - 50.0; 
 	
 	double mean_radius = 0.5*(radius_inner + radius_outer); 
 	double std_radius = 0.33*( radius_outer-radius_inner)/2.0; 
@@ -246,18 +354,26 @@ void setup_tissue( void )
 	double cell_radius = cell_defaults.phenotype.geometry.radius; 
 	double cell_spacing = 0.95 * 2.0 * cell_radius; 
 	
-	double tumor_radius = 250.0; 
+	double tumor_radius = 
+		parameters.doubles("tumor_radius"); // 250.0; 
 	
 	Cell* pCell = NULL; 
+	
+	
 	
 	std::vector<std::vector<double>> positions = create_cell_sphere_positions(cell_radius,tumor_radius); 
 	std::cout << "creating " << positions.size() << " closely-packed tumor cells ... " << std::endl; 
 	
+	static double imm_mean = parameters.doubles("tumor_mean_immunogenicity"); 
+	static double imm_sd = parameters.doubles("tumor_immunogenicity_standard_deviation"); 
+		
 	for( int i=0; i < positions.size(); i++ )
 	{
 		pCell = create_cell(); // tumor cell 
 		pCell->assign_position( positions[i] );
-		pCell->custom_data[0] = NormalRandom( 1.0, 0.25 );
+		pCell->custom_data[0] = NormalRandom( imm_mean, imm_sd );
+		if( pCell->custom_data[0] < 0.0 )
+		{ pCell->custom_data[0] = 0.0; } 
 	}
 	
 	double sum = 0.0; 
@@ -392,7 +508,6 @@ std::vector<std::string> cancer_immune_coloring_function( Cell* pCell )
 	
 	return output; 
 }
-
 
 void add_elastic_velocity( Cell* pActingOn, Cell* pAttachedTo , double elastic_constant )
 {
@@ -530,12 +645,16 @@ bool immune_cell_attempt_attachment( Cell* pAttacker, Cell* pTarget , double dt 
 	static int oncoprotein_i = pTarget->custom_data.find_variable_index( "oncoprotein" ); 
 	static int attach_rate_i = pAttacker->custom_data.find_variable_index( "attachment rate" ); 
 
-	static double oncoprotein_saturation = 2.0; 
-	static double oncoprotein_threshold =  0.5; // 0.1; 
+	static double oncoprotein_saturation = 
+		parameters.doubles("oncoprotein_saturation"); // 2.0; 
+	static double oncoprotein_threshold =  
+		parameters.doubles("oncoprotein_threshold"); // 0.5; // 0.1; 
 	static double oncoprotein_difference = oncoprotein_saturation - oncoprotein_threshold;
 	
-	static double max_attachment_distance = 18.0; 
-	static double min_attachment_distance = 14.0; 
+	static double max_attachment_distance = 
+		parameters.doubles("max_attachment_distance"); // 18.0; 
+	static double min_attachment_distance = 
+		parameters.doubles("min_attachment_distance"); // 14.0; 
 	static double attachment_difference = max_attachment_distance - min_attachment_distance; 
 	
 	if( pTarget->custom_data[oncoprotein_i] > oncoprotein_threshold && pTarget->phenotype.death.dead == false )
@@ -577,8 +696,10 @@ bool immune_cell_attempt_apoptosis( Cell* pAttacker, Cell* pTarget, double dt )
 	
 	
 	
-	static double oncoprotein_saturation = 2.0; 
-	static double oncoprotein_threshold =  0.5; // 0.1; 
+	static double oncoprotein_saturation = 
+		parameters.doubles("oncoprotein_saturation"); // 2.0; 
+	static double oncoprotein_threshold =  
+		parameters.doubles("oncoprotein_threshold"); // 0.5; // 0.1; 
 	static double oncoprotein_difference = oncoprotein_saturation - oncoprotein_threshold;
 
 	

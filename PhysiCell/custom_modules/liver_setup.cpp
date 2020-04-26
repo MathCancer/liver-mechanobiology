@@ -1,64 +1,70 @@
 /*
-#############################################################################
-# If you use PhysiCell in your project, please cite PhysiCell and the ver-  #
-# sion number, such as below:                                               #
-#                                                                           #
-# We implemented and solved the model using PhysiCell (Version 0.0.5) [1].  #
-#                                                                           #
-# [1] A Ghaffarizadeh, SH Friedman, and P Macklin, PhysiCell: an open       #
-#    source physics-based simulator for multicellular systemssimulator,     #
-#    J. Comput. Biol., 2016 (submitted).                                    #
-#                                                                           #
-# Because PhysiCell extensively uses BioFVM, we suggest you also cite       #
-#     BioFVM as below:                                                      #
-#                                                                           #
-# We implemented and solved the model using PhysiCell (Version 0.0.5) [1],  #
-# with BioFVM [2] to solve the transport equations.                         #
-#                                                                           #
-# [1] A Ghaffarizadeh, SH Friedman, and P Macklin, PhysiCell: an open       #
-#    source physics-based multicellular simulator, J. Comput. Biol., 2016   #
-#   (submitted).                                                            #
-#                                                                           #
-# [2] A Ghaffarizadeh, SH Friedman, and P Macklin, BioFVM: an efficient     #
-#    parallelized diffusive transport solver for 3-D biological simulations,#
-#    Bioinformatics 32(8): 1256-8, 2016. DOI: 10.1093/bioinformatics/btv730 #
-#                                                                           #
-#############################################################################
-#                                                                           #
-# BSD 3-Clause License (see https://opensource.org/licenses/BSD-3-Clause)   #
-#                                                                           #
-# Copyright (c) 2015-2016, Paul Macklin and the PhysiCell Project           #
-# All rights reserved.                                                      #
-#                                                                           #
-# Redistribution and use in source and binary forms, with or without        #
-# modification, are permitted provided that the following conditions are    #
-# met:                                                                      #
-#                                                                           #
-# 1. Redistributions of source code must retain the above copyright notice, #
-# this list of conditions and the following disclaimer.                     #
-#                                                                           #
-# 2. Redistributions in binary form must reproduce the above copyright      #
-# notice, this list of conditions and the following disclaimer in the       #
-# documentation and/or other materials provided with the distribution.      #
-#                                                                           #
-# 3. Neither the name of the copyright holder nor the names of its          #
-# contributors may be used to endorse or promote products derived from this #
-# software without specific prior written permission.                       #
-#                                                                           #
-# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS       #
-# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED #
-# TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A           #
-# PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER #
-# OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,  #
-# EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,       #
-# PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR        #
-# PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF    #
-# LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING      #
-# NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS        #
-# SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.              #
-#                                                                           #
-#############################################################################
+###############################################################################
+# If you use PhysiCell in your project, please cite PhysiCell and the version #
+# number, such as below:                                                      #
+#                                                                             #
+# We implemented and solved the model using PhysiCell (Version x.y.z) [1].    #
+#                                                                             #
+# [1] A Ghaffarizadeh, R Heiland, SH Friedman, SM Mumenthaler, and P Macklin, #
+#     PhysiCell: an Open Source Physics-Based Cell Simulator for Multicellu-  #
+#     lar Systems, PLoS Comput. Biol. 14(2): e1005991, 2018                   #
+#     DOI: 10.1371/journal.pcbi.1005991                                       #
+#                                                                             #
+# See VERSION.txt or call get_PhysiCell_version() to get the current version  #
+#     x.y.z. Call display_citations() to get detailed information on all cite-#
+#     able software used in your PhysiCell application.                       #
+#                                                                             #
+# Because PhysiCell extensively uses BioFVM, we suggest you also cite BioFVM  #
+#     as below:                                                               #
+#                                                                             #
+# We implemented and solved the model using PhysiCell (Version x.y.z) [1],    #
+# with BioFVM [2] to solve the transport equations.                           #
+#                                                                             #
+# [1] A Ghaffarizadeh, R Heiland, SH Friedman, SM Mumenthaler, and P Macklin, #
+#     PhysiCell: an Open Source Physics-Based Cell Simulator for Multicellu-  #
+#     lar Systems, PLoS Comput. Biol. 14(2): e1005991, 2018                   #
+#     DOI: 10.1371/journal.pcbi.1005991                                       #
+#                                                                             #
+# [2] A Ghaffarizadeh, SH Friedman, and P Macklin, BioFVM: an efficient para- #
+#     llelized diffusive transport solver for 3-D biological simulations,     #
+#     Bioinformatics 32(8): 1256-8, 2016. DOI: 10.1093/bioinformatics/btv730  #
+#                                                                             #
+###############################################################################
+#                                                                             #
+# BSD 3-Clause License (see https://opensource.org/licenses/BSD-3-Clause)     #
+#                                                                             #
+# Copyright (c) 2015-2018, Paul Macklin and the PhysiCell Project             #
+# All rights reserved.                                                        #
+#                                                                             #
+# Redistribution and use in source and binary forms, with or without          #
+# modification, are permitted provided that the following conditions are met: #
+#                                                                             #
+# 1. Redistributions of source code must retain the above copyright notice,   #
+# this list of conditions and the following disclaimer.                       #
+#                                                                             #
+# 2. Redistributions in binary form must reproduce the above copyright        #
+# notice, this list of conditions and the following disclaimer in the         #
+# documentation and/or other materials provided with the distribution.        #
+#                                                                             #
+# 3. Neither the name of the copyright holder nor the names of its            #
+# contributors may be used to endorse or promote products derived from this   #
+# software without specific prior written permission.                         #
+#                                                                             #
+# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" #
+# AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE   #
+# IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE  #
+# ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE   #
+# LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR         #
+# CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF        #
+# SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS    #
+# INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN     #
+# CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)     #
+# ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE  #
+# POSSIBILITY OF SUCH DAMAGE.                                                 #
+#                                                                             #
+###############################################################################
 */
+
 
 #include "./liver_setup.h"
 
@@ -293,8 +299,8 @@ void initialize_liver_cell_definitions( void )
 
 	// static int start_phase_index = Ki67_advanced.find_phase_index( PhysiCell_constants::Ki67_negative ); // 0
 	// static int end_phase_index = Ki67_advanced.find_phase_index( PhysiCell_constants::Ki67_positive_premitotic ); // 1
-	HCT116.phenotype.cycle.data.transition_rate(0,1) = 1.0 / ( 7.26 * 60.0); // so that the total cycle time is ~ 1 / .043
-	HCT116.parameters.max_necrosis_rate = 1.0 / ( 6.0 * 60.0 ); // 6 hour survival time
+	HCT116.phenotype.cycle.data.transition_rate(0,1) = parameters.doubles( "tumor_transition_rate" ); //1.0 / ( 7.26 * 60.0); // so that the total cycle time is ~ 1 / .043
+	HCT116.parameters.max_necrosis_rate = parameters.doubles( "tumor_max_necrosis_rate" );  //1.0 / ( 6.0 * 60.0 ); // 6 hour survival time
 /*
 	// figure out which death model is apoptosis.
     // int apoptosis_index = cell_defaults.phenotype.death.find_death_model_index( PhysiCell_constants::apoptosis_death_model );          
@@ -383,8 +389,10 @@ void setup_liver( void )
 	set_program_metadata();
 	setup_custom_data();
 	setup_liver_microenvironment( microenvironment, "./config/X.mat" , "./config/Y.mat", "./config/oxygen.mat");
+	// setup_liver_microenvironment( microenvironment, "./config/X.mat" , "./config/Y.mat", "./config/oxygen.mat");
 	initialize_liver_cell_definitions();
 	read_liver_cells( "./config/cells.mat" );
+    // read_liver_cells( "./config/cells.mat" );
 
 //	read_liver( microenvironment, "./config/X.mat" , "./config/Y.mat", "./config/oxygen.mat", "./config/cells.mat" );
 
@@ -424,9 +432,10 @@ void setup_custom_data( void )
 	myvec.resize(3,0.0);
 
 	// assume elastic movement on the order of 10 min at maximum 10 micron elongation
-	liver_custom_data.add_variable( "spring constant", "1/min" , 0.05 );                     // (1.0/10.0) * (1.0/10.0)
+	
+	liver_custom_data.add_variable( "spring constant", "1/min" , parameters.doubles( "elastic_rate" ) );  // 0.05    // (1.0/10.0) * (1.0/10.0)
 	// assume plastic movement on the order of 1 day at maximum 10 micron elongation
-	liver_custom_data.add_variable( "mechanical relaxation rate", "1/min" , 0.0005 );         // (1.0/10.0) * (1.0/(24.0*60.0)
+	liver_custom_data.add_variable( "mechanical relaxation rate", "1/min" , parameters.doubles( "plastic_rate" ) );  // 0.0005  // (1.0/10.0) * (1.0/(24.0*60.0)
 
 	liver_custom_data.add_variable( "mechanical strain", "micron" , 0.0 );
 	liver_custom_data.add_variable( "integrated mechanical strain", "micron*min" , 0.0 );
@@ -434,8 +443,8 @@ void setup_custom_data( void )
 	liver_custom_data.add_variable( "pressure", "pascal" , 0.5 );  // add the pressure variable !!!!!!
 	liver_custom_data.add_variable( "birth_rate", "1/min" , 0.05 );  // add the birth_rate variable !!!!!
 
-	liver_custom_data.add_variable( "max mechanical strain", "micron" , 0.75 );              // 10.0
-	liver_custom_data.add_variable( "max integrated mechanical strain", "micron*min" , 0.75 * 60.0 ); // 1 hour of deformation by 10 microns  
+	liver_custom_data.add_variable( "max mechanical strain", "micron" , parameters.doubles( "max_ECM_displacement" )); // 0.75       // 10.0
+	liver_custom_data.add_variable( "max integrated mechanical strain", "micron*min" , parameters.doubles( "max_ECM_displacement" ) * 60.0 ); //0.75   // 1 hour of deformation by 10 microns  
 
 	liver_custom_data.add_vector_variable( "ECM attachment point", "micron", myvec );
 	
@@ -474,6 +483,9 @@ void setup_liver_microenvironment( Microenvironment& M , std::string Xfile , std
 	default_microenvironment_options.outer_Dirichlet_conditions = false;
 	default_microenvironment_options.calculate_gradients = false;
 
+    
+	// domain size has been set in PhysiCell_setting.cpp !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+/*
 	default_microenvironment_options.dx = dx;
 	default_microenvironment_options.dy = dy;
 	default_microenvironment_options.dz = dz;
@@ -486,23 +498,67 @@ void setup_liver_microenvironment( Microenvironment& M , std::string Xfile , std
 
 	default_microenvironment_options.Z_range[0] = -dz/2.0;
 	default_microenvironment_options.Z_range[1] = dz/2.0;
-
+*/
 
 	// apply the microenvironment options
 	initialize_microenvironment();
 
-	// set up the microenvironment variable (oxygen)
+
+    // parse microenvironment data directly from XML file !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+/*	// set up the microenvironment variable (oxygen)
 	microenvironment.set_density( 0 , "oxygen" , "mmHg" );
 	microenvironment.diffusion_coefficients[0] = 1e5;
 	microenvironment.decay_rates[0] = 0.1; //  1 mm length scale
+*/
 
 	// read oxygen
 	std::vector< std::vector<double> > oxygen = read_matlab( OxygenFile );
+	
+	
+	int m = int ( ( default_microenvironment_options.Y_range[1] - default_microenvironment_options.Y_range[0] )/dy );
+	int n = int ( ( default_microenvironment_options.X_range[1] - default_microenvironment_options.X_range[0] )/dx );
+	
+	std::cout << "m, n =====================" << m << '\t' << n << std::endl; 
+	// system("pause"); 
+	
+	
+	std::vector< std::vector<double> > temp( m, std::vector<double> (n, 0.0));  
+	
+	int xx = int (( 5000 - default_microenvironment_options.Y_range[1] ) /dy );
+    int yy = int (( default_microenvironment_options.X_range[0] - (-5000) ) /dx );	
+	
+	std::cout << "xx, yy =====================" << xx << '\t' << yy << std::endl; 
+	// system("pause"); 
+	
+	for( int i=xx; i < xx+m; i++)
+	{
+	    for( int j=yy; j<yy+n; j++)
+		{
+			temp[i-xx][j-yy] = oxygen[i][j]; 
+		}
+	}
+	
+ /*
+	// transpose of the temp matrix  !!!!!!!!!!!!!!!!!!!!
+    std::vector< std::vector<double> > O2_value( n, std::vector<double> (m, 0.0));
+	for( int ii=0; ii<m; ii++ )
+	{
+		for( int jj=0; jj<n; jj++)
+		{
+			O2_value[jj][ii] = temp[ii][jj]; 
+		}
+	}
+	
+*/
+			
+    // std::cout << "microenvironment.number_of_voxels()=" << microenvironment.number_of_voxels() << std::endl; 
+	
 
 	#pragma omp parallel for
-	for( int n=0 ; n < microenvironment.number_of_voxels() ; n++ )
+	for( int n=0 ; n < microenvironment.number_of_voxels() ; n++ )    
 	{
-		std::vector<int> indices = microenvironment.cartesian_indices( n );
+		std::vector<unsigned int> indices = microenvironment.cartesian_indices( n );    // updated to unsigned int 
 		int i = indices[0];
 		int j = indices[1];
 		int k = indices[2];
@@ -512,8 +568,11 @@ void setup_liver_microenvironment( Microenvironment& M , std::string Xfile , std
 		// microenvironment.mesh.voxels[i].center
 
 		// use this access the jth substrate at the ith voxel
-		microenvironment.density_vector(n)[0] = oxygen[i][j];
+		microenvironment.density_vector(n)[0] = temp[i][j];   // using the crop oxygen !!!!!!!!!!!!!!!!!!!!!
 		// microenvironment.density_vector(n)[1] = oxygen[i][j];
+		
+		// std::cout << "microenvironment.number_of_voxels()= " << i << '\t' << j << '\t' << oxygen[i][j] << std::endl; 
+		// system("pause"); 
 	}
 
 	// create Dirichlet nodes
@@ -794,73 +853,78 @@ void read_liver_cells( std::string CellsFile )
 	std::cout << __LINE__ << std::endl;
 	for( int n=0; n < cells.size() ; n++ )
 	{
-		if( fabs( cells[n][4] - 1.0 ) < 1e-10 ) // type 1 : central vein
+		if(( default_microenvironment_options.X_range[0] <= cells[n][0] && cells[n][0] <= default_microenvironment_options.X_range[1] ) &&  
+		    ( default_microenvironment_options.Y_range[0] <= cells[n][1] && cells[n][1] <= default_microenvironment_options.Y_range[1] ))
+		
 		{
+			if( fabs( cells[n][4] - 1.0 ) < 1e-10 ) // type 1 : central vein
+			{
 
-			std::cout << "central vein radius: " << cells[n][3] << std::endl;
+				std::cout << "central vein radius: " << cells[n][3] << std::endl;
 
-			template_vector3[0] = cells[n][0];
-			template_vector3[1] = cells[n][1];
-			central_vein_positions.push_back( template_vector3 );
-		}
-
-
-		if( fabs( cells[n][4] - 2.0 ) < 1e-10 ) // type 2 : portal triad
-		{
-			std::cout << "portal triad radius: " << cells[n][3] << std::endl;
-
-			Cell* pCell = create_cell( portal_triad );
-			pCell->assign_position( cells[n][0] , cells[n][1] , 0.0 );
-			pCell->custom_data.vector_variables[0].value = pCell->position;
-		}
+				template_vector3[0] = cells[n][0];
+				template_vector3[1] = cells[n][1];
+				central_vein_positions.push_back( template_vector3 );
+			}
 
 
-		if( fabs( cells[n][4] - 3.0 ) < 1e-10 ) // type 3 : parenchyme
-		{
-			// template_vector3[0] = cells[n][0];
-			// template_vector3[1] = cells[n][1];
+			if( fabs( cells[n][4] - 2.0 ) < 1e-10 ) // type 2 : portal triad
+			{
+				std::cout << "portal triad radius: " << cells[n][3] << std::endl;
 
-			// create a parenchyma cell, and set its ECM attachment point to
-			// its current location
+				Cell* pCell = create_cell( portal_triad );
+				pCell->assign_position( cells[n][0] , cells[n][1] , 0.0 );
+				pCell->custom_data.vector_variables[0].value = pCell->position;
+			}
 
-			Cell* pCell = create_cell( parenchyme );
-			pCell->assign_position( cells[n][0] , cells[n][1] , 0.0 );
-			pCell->custom_data.vector_variables[0].value = pCell->position;
 
-			/*
-			pCell->set_phenotype( parenchyme.phenotypes[0] );
-			pCell->advance_cell_current_phase = do_nothing;
+			if( fabs( cells[n][4] - 3.0 ) < 1e-10 ) // type 3 : parenchyme
+			{
+				// template_vector3[0] = cells[n][0];
+				// template_vector3[1] = cells[n][1];
 
-			pCell->phenotype.set_current_phase( PhysiCell_constants::live );
-			pCell->set_internal_uptake_constants(dt);
+				// create a parenchyma cell, and set its ECM attachment point to
+				// its current location
 
-			pCell->custom_data = default_custom_data;
+				Cell* pCell = create_cell( parenchyme );
+				pCell->assign_position( cells[n][0] , cells[n][1] , 0.0 );
+				pCell->custom_data.vector_variables[0].value = pCell->position;
 
-			pCell->custom_data.ECM_attach = pCell->position;
-			pCell->set_internal_uptake_constants(dt);
+				/*
+				pCell->set_phenotype( parenchyme.phenotypes[0] );
+				pCell->advance_cell_current_phase = do_nothing;
 
-			pCell->custom_cell_rule = parenchyme_cell_rule;
-			pCell->custom_data.cell_type = (int) cells[n][4] ;
-			*/
+				pCell->phenotype.set_current_phase( PhysiCell_constants::live );
+				pCell->set_internal_uptake_constants(dt);
 
-		}
+				pCell->custom_data = default_custom_data;
 
-		if( fabs( cells[n][4] - 0 ) < 1e-10 ) // type  :  tumor
-		{
-			template_vector3[0] = cells[n][0];
-			template_vector3[1] = cells[n][1];
+				pCell->custom_data.ECM_attach = pCell->position;
+				pCell->set_internal_uptake_constants(dt);
 
-			Cell* pCell = create_cell( HCT116 );
-			pCell->assign_position( cells[n][0] , cells[n][1] , 0.0 );
+				pCell->custom_cell_rule = parenchyme_cell_rule;
+				pCell->custom_data.cell_type = (int) cells[n][4] ;
+				*/
 
-/*
-			Basic_Agent* pBA = create_basic_agent();
-			pBA->assign_position( cells[n][0] , cells[n][1] , 0.0 );
-			pBA->set_total_volume( 4.188790204786391 * cells[n][3] * cells[n][3] * cells[n][3] );
-			pBA->set_internal_uptake_constants( 0.01 );
+			}
 
-			pBA->type = (int) cells[n][4] ;
-*/
+			if( fabs( cells[n][4] - 0 ) < 1e-10 ) // type  :  tumor
+			{
+				template_vector3[0] = cells[n][0];
+				template_vector3[1] = cells[n][1];
+
+				Cell* pCell = create_cell( HCT116 );
+				pCell->assign_position( cells[n][0] , cells[n][1] , 0.0 );
+
+	/*
+				Basic_Agent* pBA = create_basic_agent();
+				pBA->assign_position( cells[n][0] , cells[n][1] , 0.0 );
+				pBA->set_total_volume( 4.188790204786391 * cells[n][3] * cells[n][3] * cells[n][3] );
+				pBA->set_internal_uptake_constants( 0.01 );
+
+				pBA->type = (int) cells[n][4] ;
+	*/
+			}
 		}
 
 	}

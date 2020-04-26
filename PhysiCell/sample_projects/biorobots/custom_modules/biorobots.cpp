@@ -1,65 +1,68 @@
 /*
-#############################################################################
-# If you use PhysiCell in your project, please cite PhysiCell and the ver-  #
-# sion number, such as below:                                               #
-#                                                                           #
-# We implemented and solved the model using PhysiCell (Version 1.2.1) [1].  #
-#                                                                           #
-# [1] A Ghaffarizadeh, SH Friedman, SM Mumenthaler, and P Macklin,          #
-#     PhysiCell: an Open Source Physics-Based Cell Simulator for            #
-#     Multicellular Systems, PLoS Comput. Biol. 2017 (in revision).         #
-#     preprint DOI: 10.1101/088773                                          #
-#                                                                           #
-# Because PhysiCell extensively uses BioFVM, we suggest you also cite       #
-#     BioFVM as below:                                                      #
-#                                                                           #
-# We implemented and solved the model using PhysiCell (Version 1.2.1) [1],  #
-# with BioFVM [2] to solve the transport equations.                         #
-#                                                                           #
-# [1] A Ghaffarizadeh, SH Friedman, SM Mumenthaler, and P Macklin,          #
-#     PhysiCell: an Open Source Physics-Based Cell Simulator for            #
-#     Multicellular Systems, PLoS Comput. Biol. 2017 (in revision).         #
-#     preprint DOI: 10.1101/088773                                          #
-#                                                                           #
-# [2] A Ghaffarizadeh, SH Friedman, and P Macklin, BioFVM: an efficient     #
-#    parallelized diffusive transport solver for 3-D biological simulations,#
-#    Bioinformatics 32(8): 1256-8, 2016. DOI: 10.1093/bioinformatics/btv730 #
-#                                                                           #
-#############################################################################
-#                                                                           #
-# BSD 3-Clause License (see https://opensource.org/licenses/BSD-3-Clause)   #
-#                                                                           #
-# Copyright (c) 2015-2017, Paul Macklin and the PhysiCell Project           #
-# All rights reserved.                                                      #
-#                                                                           #
-# Redistribution and use in source and binary forms, with or without        #
-# modification, are permitted provided that the following conditions are    #
-# met:                                                                      #
-#                                                                           #
-# 1. Redistributions of source code must retain the above copyright notice, #
-# this list of conditions and the following disclaimer.                     #
-#                                                                           #
-# 2. Redistributions in binary form must reproduce the above copyright      #
-# notice, this list of conditions and the following disclaimer in the       #
-# documentation and/or other materials provided with the distribution.      #
-#                                                                           #
-# 3. Neither the name of the copyright holder nor the names of its          #
-# contributors may be used to endorse or promote products derived from this #
-# software without specific prior written permission.                       #
-#                                                                           #
-# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS       #
-# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED #
-# TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A           #
-# PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER #
-# OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,  #
-# EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,       #
-# PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR        #
-# PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF    #
-# LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING      #
-# NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS        #
-# SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.              #
-#                                                                           #
-#############################################################################
+###############################################################################
+# If you use PhysiCell in your project, please cite PhysiCell and the version #
+# number, such as below:                                                      #
+#                                                                             #
+# We implemented and solved the model using PhysiCell (Version x.y.z) [1].    #
+#                                                                             #
+# [1] A Ghaffarizadeh, R Heiland, SH Friedman, SM Mumenthaler, and P Macklin, #
+#     PhysiCell: an Open Source Physics-Based Cell Simulator for Multicellu-  #
+#     lar Systems, PLoS Comput. Biol. 14(2): e1005991, 2018                   #
+#     DOI: 10.1371/journal.pcbi.1005991                                       #
+#                                                                             #
+# See VERSION.txt or call get_PhysiCell_version() to get the current version  #
+#     x.y.z. Call display_citations() to get detailed information on all cite-#
+#     able software used in your PhysiCell application.                       #
+#                                                                             #
+# Because PhysiCell extensively uses BioFVM, we suggest you also cite BioFVM  #
+#     as below:                                                               #
+#                                                                             #
+# We implemented and solved the model using PhysiCell (Version x.y.z) [1],    #
+# with BioFVM [2] to solve the transport equations.                           #
+#                                                                             #
+# [1] A Ghaffarizadeh, R Heiland, SH Friedman, SM Mumenthaler, and P Macklin, #
+#     PhysiCell: an Open Source Physics-Based Cell Simulator for Multicellu-  #
+#     lar Systems, PLoS Comput. Biol. 14(2): e1005991, 2018                   #
+#     DOI: 10.1371/journal.pcbi.1005991                                       #
+#                                                                             #
+# [2] A Ghaffarizadeh, SH Friedman, and P Macklin, BioFVM: an efficient para- #
+#     llelized diffusive transport solver for 3-D biological simulations,     #
+#     Bioinformatics 32(8): 1256-8, 2016. DOI: 10.1093/bioinformatics/btv730  #
+#                                                                             #
+###############################################################################
+#                                                                             #
+# BSD 3-Clause License (see https://opensource.org/licenses/BSD-3-Clause)     #
+#                                                                             #
+# Copyright (c) 2015-2018, Paul Macklin and the PhysiCell Project             #
+# All rights reserved.                                                        #
+#                                                                             #
+# Redistribution and use in source and binary forms, with or without          #
+# modification, are permitted provided that the following conditions are met: #
+#                                                                             #
+# 1. Redistributions of source code must retain the above copyright notice,   #
+# this list of conditions and the following disclaimer.                       #
+#                                                                             #
+# 2. Redistributions in binary form must reproduce the above copyright        #
+# notice, this list of conditions and the following disclaimer in the         #
+# documentation and/or other materials provided with the distribution.        #
+#                                                                             #
+# 3. Neither the name of the copyright holder nor the names of its            #
+# contributors may be used to endorse or promote products derived from this   #
+# software without specific prior written permission.                         #
+#                                                                             #
+# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" #
+# AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE   #
+# IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE  #
+# ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE   #
+# LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR         #
+# CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF        #
+# SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS    #
+# INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN     #
+# CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)     #
+# ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE  #
+# POSSIBILITY OF SUCH DAMAGE.                                                 #
+#                                                                             #
+###############################################################################
 */
 
 #include "./biorobots.h"
@@ -68,35 +71,37 @@ void setup_microenvironment( void )
 {
 	// set domain parameters
 	
-	default_microenvironment_options.outer_Dirichlet_conditions = false;
-
-	default_microenvironment_options.X_range = {-1000, 1000}; 
-	default_microenvironment_options.Y_range = {-1000, 1000}; 
-	default_microenvironment_options.simulate_2D = true; 
-	
-	default_microenvironment_options.calculate_gradients = true;
-
-	microenvironment.add_density( "cargo signal", "dimensionless" ); 
-	microenvironment.diffusion_coefficients[1] = 1e3; 
-	microenvironment.decay_rates[1] = .4; // 50 micron length scale 
-	
 	initialize_microenvironment(); 	
-
-	// update the first diffusing substrate (gets overwritten by BioFVM::initialize_microenvironment()
 	
-	microenvironment.set_density( 0 , "director signal", "dimensionless" ); 
-	microenvironment.diffusion_coefficients[0] = 1e3; 
-	microenvironment.decay_rates[0] = 0.1;  // 100 micron length scale 
+	// these will ***overwrite*** values specified in the 
+	// microenvironment_setup part of the XML,
+	// based on what's in the user_parameters section 
 	
 	microenvironment.name = "synthetic tissue"; 
-
-	microenvironment.display_information( std::cout );
+	
+	int cargo_ID = microenvironment.find_density_index( "cargo signal" ); 
+	int director_ID = microenvironment.find_density_index( "director signal" ); 
+	
+	microenvironment.diffusion_coefficients[cargo_ID] = 
+		parameters.doubles("cargo_signal_D");  
+	microenvironment.decay_rates[cargo_ID] = 
+		parameters.doubles("cargo_signal_decay");  
+	
+	microenvironment.diffusion_coefficients[director_ID] = 
+		parameters.doubles("director_signal_D");  
+	microenvironment.decay_rates[director_ID] = 
+		parameters.doubles("director_signal_decay"); 
+	
+	// display the microenvironment again 
+	
+	microenvironment.display_information( std::cout ); 
 	
 	return; 
 }
 
 void create_cell_types( void )
 {
+	SeedRandom( parameters.ints("random_seed") ); 
 	// housekeeping 
 	
 	initialize_default_cell_definition();
@@ -123,14 +128,17 @@ void create_cell_types( void )
 	cell_defaults.phenotype.cycle.data.transition_rate( cycle_start_index , cycle_end_index ) = 0.0; 
 	cell_defaults.phenotype.death.rates[apoptosis_index] = 0.0; 
 	
-	// set uptake and secretion to zero 
-	cell_defaults.phenotype.secretion.secretion_rates[0] = 0; 
-	cell_defaults.phenotype.secretion.uptake_rates[0] = 0; 
-	cell_defaults.phenotype.secretion.saturation_densities[0] = 1; 
+	int cargo_ID = microenvironment.find_density_index( "cargo signal" ); // 1 
+	int director_ID = microenvironment.find_density_index( "director signal" ); // 0 
 	
-	cell_defaults.phenotype.secretion.secretion_rates[1] = 0; 
-	cell_defaults.phenotype.secretion.uptake_rates[1] = 0; 
-	cell_defaults.phenotype.secretion.saturation_densities[1] = 1; 
+	// set uptake and secretion to zero 
+	cell_defaults.phenotype.secretion.secretion_rates[director_ID] = 0; 
+	cell_defaults.phenotype.secretion.uptake_rates[director_ID] = 0; 
+	cell_defaults.phenotype.secretion.saturation_densities[director_ID] = 1; 
+	
+	cell_defaults.phenotype.secretion.secretion_rates[cargo_ID] = 0; 
+	cell_defaults.phenotype.secretion.uptake_rates[cargo_ID] = 0; 
+	cell_defaults.phenotype.secretion.saturation_densities[cargo_ID] = 1; 
 
 	// set the default cell type to no phenotype updates 
 	
@@ -139,7 +147,11 @@ void create_cell_types( void )
 	// add custom data 
 	
 	cell_defaults.custom_data.add_variable( "receptor" , "dimensionless", 0.0 ); 
+	/*
 	cell_defaults.custom_data.add_variable( "elastic coefficient" , "1/min" , 0.05 );  // 0.1; 
+	*/
+	Parameter<double> paramD = parameters.doubles[ "elastic_coefficient" ]; 
+	cell_defaults.custom_data.add_variable( "elastic coefficient" , paramD.units , paramD.value );  // 0.1; 
 	
 	//
 	// Define "seed" cells 
@@ -150,7 +162,7 @@ void create_cell_types( void )
 	
 	// seed cell secrete the signal 
 	
-	director_cell.phenotype.secretion.secretion_rates[0] = 9.9; 
+	director_cell.phenotype.secretion.secretion_rates[director_ID] = 9.9; 
 	
 	// seed cell rule 
 	
@@ -167,7 +179,7 @@ void create_cell_types( void )
 	
 	cargo_cell.custom_data["receptor"] = 1.0; 
 
-	cargo_cell.phenotype.secretion.secretion_rates[1] = 9.9; 
+	cargo_cell.phenotype.secretion.secretion_rates[cargo_ID] = 9.9; 
 	cargo_cell.phenotype.cycle.data.transition_rate( cycle_start_index , cycle_end_index ) = 0.0; // 7e-4
 	
 	//
@@ -180,10 +192,14 @@ void create_cell_types( void )
 	// make them motile, and unadhesive  
 	
 	worker_cell.phenotype.motility.is_motile = true; 
-	worker_cell.phenotype.motility.persistence_time = 5.0; 
-	worker_cell.phenotype.motility.migration_speed = 5;
-	worker_cell.phenotype.motility.migration_bias = 0.0;
+	worker_cell.phenotype.motility.persistence_time = 
+		parameters.doubles("worker_motility_persistence_time"); // 5.0; 
+	worker_cell.phenotype.motility.migration_speed = 
+		parameters.doubles("worker_migration_speed"); // 5; 
+	worker_cell.phenotype.motility.migration_bias = 
+		parameters.doubles("unattached_worker_migration_bias"); // 0.0; 
 	
+
 	worker_cell.phenotype.mechanics.cell_cell_adhesion_strength = 0.0; 
 	
 	worker_cell.functions.update_phenotype = worker_cell_rule; 
@@ -221,16 +237,20 @@ std::vector<std::string> robot_coloring_function( Cell* pCell )
 	{ return output; }
 
 	output[3] = "none"; // no nuclear outline color 
+	
+	static std::string worker_color = parameters.strings( "worker_color" ); 
+	static std::string cargo_color = parameters.strings( "cargo_color" ); 
+	static std::string director_color = parameters.strings( "director_color" ); 
 
 	if( pCell->type == worker_ID )
-	{ color = "red"; }
+	{ color = worker_color; }
 	if( pCell->type == cargo_ID )
-	{ color = "blue"; }
+	{ color = cargo_color; }
 	if( pCell->type == linker_ID )
 	{ color = "aquamarine"; }
 
 	if( pCell->type == director_ID )
-	{ color = "limegreen"; }
+	{ color = director_color; }
 
 	output[0] = color; 
 	output[2] = color; 
@@ -307,9 +327,9 @@ void create_cargo_cluster_3( std::vector<double>& center )
 
 void setup_tissue( void )
 {
-	int number_of_directors = 15;
-	int number_of_cargo_clusters = 100; 
-	int number_of_workers = 50; 
+	int number_of_directors = parameters.ints("number_of_directors"); // 15;  
+	int number_of_cargo_clusters = parameters.ints("number_of_cargo_clusters"); // 100;  
+	int number_of_workers = parameters.ints("number_of_workers"); // 50;  
 
 	std::cout << "Placing cells ... " << std::endl; 
 	
@@ -320,7 +340,7 @@ void setup_tissue( void )
 	double x_range = default_microenvironment_options.X_range[1] - default_microenvironment_options.X_range[0]; 
 	double y_range = default_microenvironment_options.Y_range[1] - default_microenvironment_options.Y_range[0]; 
 
-	double relative_margin = 0.2; 
+	double relative_margin = 0.2;  
 	double relative_outer_margin = 0.02; 
 	
 	std::cout << "\tPlacing director cells ... " << std::endl; 
@@ -495,10 +515,13 @@ void extra_elastic_attachment_mechanics( Cell* pCell, Phenotype& phenotype, doub
 
 void worker_cell_rule( Cell* pCell, Phenotype& phenotype, double dt )
 {
-	static double threshold = 0.4; 
+	static double threshold = parameters.doubles("drop_threshold"); // 0.4; 
+	
+	static int cargo_ID = microenvironment.find_density_index( "cargo signal" ); // 1 
+	static int director_ID = microenvironment.find_density_index( "director signal" ); // 0 
 	
 	// have I arrived? If so, release my cargo 
-	if( pCell->nearest_density_vector()[0] > threshold )
+	if( pCell->nearest_density_vector()[director_ID] > threshold )
 	{
 		for( int i=0; i < pCell->state.neighbors.size(); i++ )
 		{
@@ -535,18 +558,26 @@ void worker_cell_motility( Cell* pCell, Phenotype& phenotype, double dt )
 	// if attached, biased motility towards director chemoattractant 
 	// otherwise, biased motility towards cargo chemoattractant 
 	
+	static double attached_worker_migration_bias = 
+		parameters.doubles("attached_worker_migration_bias"); 
+	static double unattached_worker_migration_bias = 
+		parameters.doubles("unattached_worker_migration_bias"); 
+		
+	static int cargo_ID = microenvironment.find_density_index( "cargo signal" ); // 1 
+	static int director_ID = microenvironment.find_density_index( "director signal" ); // 0 
+	
 	if( pCell->state.neighbors.size() > 0 )
 	{
-		phenotype.motility.migration_bias = 1.0; 
+		phenotype.motility.migration_bias = attached_worker_migration_bias; 
 
-		phenotype.motility.migration_bias_direction = pCell->nearest_gradient(0);	
+		phenotype.motility.migration_bias_direction = pCell->nearest_gradient(director_ID);	
 		normalize( &( phenotype.motility.migration_bias_direction ) );			
 	}
 	else
 	{
-		phenotype.motility.migration_bias = 0.5; 
+		phenotype.motility.migration_bias = unattached_worker_migration_bias; 
 		
-		phenotype.motility.migration_bias_direction = pCell->nearest_gradient(1);	
+		phenotype.motility.migration_bias_direction = pCell->nearest_gradient(cargo_ID);	
 		normalize( &( phenotype.motility.migration_bias_direction ) );			
 	}
 	
