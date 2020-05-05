@@ -11,6 +11,22 @@ We found that:
 
 * In other tissue regimes, tumors will develop invasive fingers into the surrounding tissue along mechanical weaknesses.
 
+### Citing
+If you use the code in your work, please cite [Impact of tumor-parenchyma biomechanics on liver metastatic progression: a multi-model approach](https://www.biorxiv.org/content/10.1101/2020.05.04.074989v1).
+```text
+@article {Wang2020.05.04.074989,
+	author = {Wang, Yafei and Brodin, Erik and Nishii, Kenichiro and Frieboes, Hermann B and Mumenthaler, Shannon and Sparks, Jessica L and Macklin, Paul},
+	title = {Impact of tumor-parenchyma biomechanics on liver metastatic progression: a multi-model approach},
+	elocation-id = {2020.05.04.074989},
+	year = {2020},
+	doi = {10.1101/2020.05.04.074989},
+	publisher = {Cold Spring Harbor Laboratory},
+	URL = {https://www.biorxiv.org/content/early/2020/05/05/2020.05.04.074989},
+	eprint = {https://www.biorxiv.org/content/early/2020/05/05/2020.05.04.074989.full.pdf},
+	journal = {bioRxiv}
+}
+```
+
 * * * 
 
 ## Release summary: 
